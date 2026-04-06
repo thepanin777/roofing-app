@@ -59,7 +59,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.15);
 
 <script>
 
-const supabase = supabase.createClient(
+const supabaseClient = supabase.createClient(
 "https://rwqnehuemoiukxcccosk.supabase.co",
 "sb_publishable_wp68fy-NlNCdo0kp38cRKQ_hhL_MSZP"
 )
@@ -71,7 +71,7 @@ let phone=document.getElementById("phone").value
 let email=document.getElementById("email").value
 let address=document.getElementById("address").value
 
-await supabase.from("clients").insert([
+await supabaseClient.from("clients").insert([
 {name,phone,email,address}
 ])
 
