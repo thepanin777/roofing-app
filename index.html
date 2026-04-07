@@ -72,7 +72,7 @@ let email=document.getElementById("email").value
 let address=document.getElementById("address").value
 
 await supabaseClient.from("clients").insert([
-{name,phone,email,address}
+  { name, phone, email, address }
 ])
 
 alert("Client saved")
