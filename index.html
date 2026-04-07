@@ -1,18 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Cesar Roofing App</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 
-
-<script>
-const supabaseClient = supabase.createClient(
-"https://owusivrmxrvnzordgaul.supabase.co",
-"sb_publishable_wp68fy-NlNCdo0kp38cRKQ_hhL_MSZP"
-);
-</script>
 <style>
 body{
 font-family:Arial;
@@ -57,7 +51,6 @@ box-shadow:0 2px 6px rgba(0,0,0,0.15);
 <button id="saveBtn">Save Client</button>
 </div>
 
-  document.getElementById("saveBtn").addEventListener("click", saveClient);
 <script>
 
 const supabaseClient = supabase.createClient(
@@ -67,6 +60,8 @@ const supabaseClient = supabase.createClient(
 
 async function saveClient(){
 
+alert("Button clicked") // DEBUG
+
 let name = document.getElementById("name").value
 let phone = document.getElementById("phone").value
 let email = document.getElementById("email").value
@@ -74,9 +69,7 @@ let address = document.getElementById("address").value
 
 const { data, error } = await supabaseClient
   .from("clients")
-  .insert([
-    { name: name, phone: phone, email: email, address: address }
-  ])
+  .insert([{ name, phone, email, address }])
 
 if(error){
   alert(error.message)
@@ -85,6 +78,8 @@ if(error){
 }
 
 }
+
+document.getElementById("saveBtn").addEventListener("click", saveClient);
 
 </script>
 
