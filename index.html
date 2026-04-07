@@ -81,6 +81,31 @@ alert("Client saved")
 
 }
 
+async function loadClients(){
+
+const { data, error } = await supabaseClient
+.from("clients")
+.select("*")
+.order("id",{ascending:false})
+
+let list = document.getElementById("clientList")
+
+list.innerHTML = ""
+
+data.forEach(client => {
+
+list.innerHTML += `
+<div style="border-bottom:1px solid #eee;padding:10px 0;">
+<strong>${client.name}</strong><br>
+📞 ${client.phone || ""}
+<br>
+📍 ${client.address || ""}
+</div>
+`
+
+})
+
+}
 document.getElementById("saveBtn").addEventListener("click", saveClient);
 
 </script>
