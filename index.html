@@ -88,15 +88,25 @@ const { data, error } = await supabaseClient
 .select("*")
 .order("id",{ascending:false})
 
+if(error){
+  console.log(error)
+  return
+}
+
 let list = document.getElementById("clientList")
 
 list.innerHTML = ""
+
+if(!data || data.length === 0){
+  list.innerHTML = "No clients yet"
+  return
+}
 
 data.forEach(client => {
 
 list.innerHTML += `
 <div style="border-bottom:1px solid #eee;padding:10px 0;">
-<strong>${client.name}</strong><br>
+<strong>${client.name || "No Name"}</strong><br>
 📞 ${client.phone || ""}
 <br>
 📍 ${client.address || ""}
