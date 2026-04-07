@@ -77,6 +77,11 @@ if(error){
 alert(error.message)
 }else{
 alert("Client saved")
+document.getElementById("name").value = ""
+document.getElementById("phone").value = ""
+document.getElementById("email").value = ""
+document.getElementById("address").value = ""
+loadClients()
 }
 
 }
