@@ -66,16 +66,20 @@ const supabaseClient = supabase.createClient(
 
 async function saveClient(){
 
-let name=document.getElementById("name").value
-let phone=document.getElementById("phone").value
-let email=document.getElementById("email").value
-let address=document.getElementById("address").value
+let name = document.getElementById("name").value
+let phone = document.getElementById("phone").value
+let email = document.getElementById("email").value
+let address = document.getElementById("address").value
 
-await supabaseClient.from("clients").insert([
-  { name, phone, email, address }
-])
+const { data, error } = await supabaseClient
+  .from("clients")
+  .insert([{ name, phone, email, address }])
 
-alert("Client saved")
+if(error){
+  alert(error.message)
+}else{
+  alert("Client saved")
+}
 
 }
 
